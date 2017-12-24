@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import {
-  View, Text, StyleSheet, Image
+  View, Text, StyleSheet, Image, TouchableOpacity
 } from 'react-native';
 
 class ProfileScreen extends Component {
@@ -34,14 +34,39 @@ class ProfileScreen extends Component {
           </View>
         </View>
         <View style={styles.contentContainer}>
-          <Text style={styles.contentHead}>
-            My orders
-          </Text>
+          <Box />
+          <Box />
         </View>
       </View>
     );
   }
 }
+
+const SingleOrder = props => (
+  <TouchableOpacity style={styles.singleOrder}>
+    <Text style={styles.date}>10 Dec 2017</Text> 
+    <View style={styles.orderMeta}>
+      <Text style={styles.orderText}>Total Items: 15</Text>
+      <Text style={styles.orderText}>Rs. 2500</Text>
+    </View>
+  </TouchableOpacity>
+)
+
+const Box = props => (
+  <View style={styles.box}>
+    <View style={styles.boxHead}>
+      <Text style={styles.boxHeadText}>My Address</Text>
+    </View>
+    <View style={styles.boxContainer}>
+      <Text style={styles.contentText}>House no. 55, Ambika Marg Old Baneshwor Kathmandu Bagmati Nepal</Text>
+    </View>
+    <View style={styles.boxFooter}>
+      <TouchableOpacity style={styles.footerButton}>
+        <Text style={styles.buttonText}>ADD NEW</Text>
+      </TouchableOpacity>
+    </View>
+  </View>
+)
 
 const styles = StyleSheet.create({
   container: {    
@@ -108,11 +133,73 @@ const styles = StyleSheet.create({
   content: {
     color: 'black'
   },
-  contentHead: {
-    paddingVertical: 15,
+  contentHead: {    
     fontSize: 17,
     fontWeight: '500',
-    color: '#333'
+    color: '#2A3A50',
+  },
+  singleOrder: {    
+    backgroundColor: 'white',
+    paddingVertical: 12,
+    marginHorizontal: -15,
+    paddingHorizontal: 15,
+    marginBottom: 5,    
+  },
+  orderText: {
+    fontWeight: 'bold',
+    color: '#666',
+    fontSize: 12
+  },
+  date: {
+    color: '#409DEF',
+    fontWeight: 'bold',
+    fontSize: 14
+  },
+  orderMeta: {
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    marginTop: 10
+  },
+  box: {
+    elevation: 1,
+    backgroundColor: 'white',
+    padding: 10,
+    borderTopRightRadius: 5,
+    borderTopLeftRadius: 5,
+    marginBottom: 10
+  },
+  boxHeadText: {
+    color: '#202020',
+    fontWeight: '500',
+    fontSize: 15,        
+    marginBottom: 0,
+    
+  },
+  boxContainer: {
+    paddingTop: 5,
+    paddingBottom: 15
+  },
+  contentText: {
+    color: '#787878',
+    fontSize: 13
+  },
+  boxFooter: {
+    borderTopWidth: 1,
+    borderColor: '#ccc',
+    paddingTop: 12,
+    paddingBottom: 5
+  },
+  footerButton: {
+    backgroundColor: '#409DEF',
+    alignSelf: 'flex-end',
+    paddingHorizontal: 20,
+    paddingVertical: 7,
+    borderRadius: 20
+  },
+  buttonText: {    
+    fontWeight: 'bold',
+    fontSize: 12,
+    color: 'white'
   }
 })
 
