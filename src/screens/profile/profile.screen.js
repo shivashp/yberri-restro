@@ -1,12 +1,39 @@
 import React, { Component } from 'react';
 import {
-  View, Text, StyleSheet, Image, TouchableOpacity
+  View, Text, StyleSheet, Image, TouchableOpacity, Dimensions, ScrollView
 } from 'react-native';
+import { Carousel } from 'components';
+import { LoginScreen } from 'screens';
+
+
+const images = [
+  {
+    source: {
+      uri: 'http://i.imgur.com/z1mIF5l.jpg',
+    },
+  },
+  {
+    source: {
+      uri: 'http://www.rechargenshoppingtricks.com/wp-content/uploads/2015/12/Paytm-food-offers.png',
+    },
+  },
+  {
+    source: {
+      uri: 'https://www.mbplc.com/images/news/ember-fooddeal-wide.jpg',
+    },
+  },
+  {
+    source: {
+      uri: 'https://www.bp.com/content/dam/bp-country/en_au/promotions/p12-6.jpg',
+    },
+  },
+  
+];
 
 class ProfileScreen extends Component {
   render() {
     return (
-      <View style={styles.container}>
+      <ScrollView style={styles.container}>
         <View style={styles.headContainer}>
           <Image source={{uri: 'https://i.pinimg.com/236x/8c/f7/bf/8cf7bf38723eabd80c7229f834089693--wallpaper-for-iphone-mobile-wallpaper.jpg'}}
             style={styles.imageCover}
@@ -34,23 +61,18 @@ class ProfileScreen extends Component {
           </View>
         </View>
         <View style={styles.contentContainer}>
-          <Box />
-          <Box />
+          <Text style={styles.sectionHeading}>RECOMMENDED FOR YOU</Text>                          
+          <Carousel images={images} />   
+
+          <Box />         
+          <Box />         
+          <Box />         
         </View>
-      </View>
+      </ScrollView>
     );
   }
 }
 
-const SingleOrder = props => (
-  <TouchableOpacity style={styles.singleOrder}>
-    <Text style={styles.date}>10 Dec 2017</Text> 
-    <View style={styles.orderMeta}>
-      <Text style={styles.orderText}>Total Items: 15</Text>
-      <Text style={styles.orderText}>Rs. 2500</Text>
-    </View>
-  </TouchableOpacity>
-)
 
 const Box = props => (
   <View style={styles.box}>
@@ -60,11 +82,11 @@ const Box = props => (
     <View style={styles.boxContainer}>
       <Text style={styles.contentText}>House no. 55, Ambika Marg Old Baneshwor Kathmandu Bagmati Nepal</Text>
     </View>
-    <View style={styles.boxFooter}>
+    {/* <View style={styles.boxFooter}>
       <TouchableOpacity style={styles.footerButton}>
         <Text style={styles.buttonText}>ADD NEW</Text>
       </TouchableOpacity>
-    </View>
+    </View> */}
   </View>
 )
 
@@ -101,34 +123,36 @@ const styles = StyleSheet.create({
   },
   profileName: {
     marginTop: 20,
-    fontSize: 17,
-    fontWeight: '500'
+    fontSize: 17,    
+    fontFamily: 'open-sans'
   },
   headMeta: {
     flexDirection: 'row',
     justifyContent: 'space-between',
     alignItems: 'stretch',
     paddingBottom: 15,
-    paddingHorizontal: 15
+    paddingHorizontal: 15,
   },
   grid: {
     justifyContent: 'center',
     alignItems: 'center'
   },
   metaValue: {
-    color: 'white',
-    fontWeight: '500',
-    fontSize: 15
+    color: 'white',    
+    fontSize: 15,
+    fontFamily: 'open-sans'
   },
   metaKey:{
     color: '#AFB6BE',
-    fontSize: 12
+    fontSize: 12,
+    fontFamily: 'open-sans'
   },
   contentContainer: {    
     height: '100%',
     backgroundColor:"#EEEEEE",
-    paddingHorizontal: 15,
-    paddingVertical: 20
+    paddingHorizontal: 10,
+    paddingVertical: 20,
+    marginBottom:50
   },
   content: {
     color: 'black'
@@ -138,42 +162,30 @@ const styles = StyleSheet.create({
     fontWeight: '500',
     color: '#2A3A50',
   },
-  singleOrder: {    
-    backgroundColor: 'white',
-    paddingVertical: 12,
-    marginHorizontal: -15,
-    paddingHorizontal: 15,
-    marginBottom: 5,    
-  },
-  orderText: {
+  sectionHeading: {    
+    paddingVertical: 5,    
+    fontFamily: 'open-sans',
+    fontSize: 12,
     fontWeight: 'bold',
-    color: '#666',
-    fontSize: 12
-  },
-  date: {
-    color: '#409DEF',
-    fontWeight: 'bold',
-    fontSize: 14
-  },
-  orderMeta: {
-    flexDirection: 'row',
-    justifyContent: 'space-between',
-    marginTop: 10
-  },
+    marginBottom: 10,
+    color: '#2A3A50',
+  },  
   box: {
     elevation: 1,
     backgroundColor: 'white',
     padding: 10,
     borderTopRightRadius: 5,
     borderTopLeftRadius: 5,
-    marginBottom: 10
+    marginVertical: 10
   },
   boxHeadText: {
-    color: '#202020',
-    fontWeight: '500',
+    color: '#202020',    
     fontSize: 15,        
-    marginBottom: 0,
-    
+    marginBottom: 15,
+    borderBottomWidth: 1,
+    borderColor: '#ccc',
+    paddingBottom: 10,
+    fontFamily: 'open-sans',
   },
   boxContainer: {
     paddingTop: 5,
@@ -186,20 +198,20 @@ const styles = StyleSheet.create({
   boxFooter: {
     borderTopWidth: 1,
     borderColor: '#ccc',
-    paddingTop: 12,
-    paddingBottom: 5
+    marginTop: 10,
+    paddingTop: 10,        
   },
   footerButton: {
-    backgroundColor: '#409DEF',
+    // backgroundColor: '#409DEF',
     alignSelf: 'flex-end',
     paddingHorizontal: 20,
-    paddingVertical: 7,
+    paddingVertical: 0,
     borderRadius: 20
   },
   buttonText: {    
     fontWeight: 'bold',
     fontSize: 12,
-    color: 'white'
+    color: '#409DEF'
   }
 })
 
