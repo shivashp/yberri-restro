@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import {
   View, Text, StyleSheet, Image, TouchableOpacity, Dimensions, ScrollView
 } from 'react-native';
+import ParallaxScroll from '@monterosa/react-native-parallax-scroll';
 import { Carousel } from 'components';
 import { LoginScreen } from 'screens';
 
@@ -30,49 +31,69 @@ const images = [
   
 ];
 
+const Header = () => (
+  <View>
+    <Text>This is header</Text>
+  </View>
+)
+
 class ProfileScreen extends Component {
   render() {
     return (
-      <ScrollView style={styles.container}>
-        <View style={styles.headContainer}>
-          <Image source={{uri: 'https://i.pinimg.com/236x/8c/f7/bf/8cf7bf38723eabd80c7229f834089693--wallpaper-for-iphone-mobile-wallpaper.jpg'}}
-            style={styles.imageCover}
-            blurRadius={0.7}
-          />       
-          <View style={styles.overlay}></View>
-          <View style={styles.headSection}>        
-            <Image source={{uri: 'https://i.stack.imgur.com/aSMCQ.jpg?s=328&g=1'}}
-              style={styles.profilePicture}/>       
-            <Text style={[styles.headText, styles.profileName]}>Shiva Pandey</Text>
-          </View>
-          <View style={styles.headMeta}>
-            <View style={styles.grid}>
-              <Text style={styles.metaValue}>120</Text>
-              <Text style={styles.metaKey}>Total Orders</Text>
-            </View>
-            <View style={styles.grid}>
-              <Text style={styles.metaValue}>2620</Text>
-              <Text style={styles.metaKey}>Loyalty Points</Text>
-            </View>
-            <View style={styles.grid}>
-              <Text style={styles.metaValue}>Rs. 1720</Text>
-              <Text style={styles.metaKey}>Total Spent</Text>
-            </View>
-          </View>
-        </View>
+      <ParallaxScroll        
+        isHeaderFixed={false}
+        parallaxHeight={300}        
+        renderParallaxBackground={({ animatedValue }) => <Text>Shiva Pandey</Text>}
+        renderParallaxForeground={({ animatedValue }) => <Foreground animatedValue={animatedValue} />}
+        parallaxBackgroundScrollSpeed={5}
+        parallaxForegroundScrollSpeed={2.5}
+        style={styles.container}
+      >      
+        
         <View style={styles.contentContainer}>
           <Text style={styles.sectionHeading}>RECOMMENDED FOR YOU</Text>                          
           <Carousel images={images} />   
 
           <Box />         
           <Box />         
+          <Box />  
           <Box />         
-        </View>
-      </ScrollView>
+          <Box />         
+          <Box />         
+        </View>      
+      </ParallaxScroll>
     );
   }
 }
 
+const Foreground = props => (
+  <View style={styles.headContainer}>
+    <Image source={{uri: 'https://i.pinimg.com/236x/8c/f7/bf/8cf7bf38723eabd80c7229f834089693--wallpaper-for-iphone-mobile-wallpaper.jpg'}}
+      style={styles.imageCover}
+      blurRadius={0.7}
+    />       
+    <View style={styles.overlay}></View>
+    <View style={styles.headSection}>        
+      <Image source={{uri: 'https://i.stack.imgur.com/aSMCQ.jpg?s=328&g=1'}}
+        style={styles.profilePicture}/>       
+      <Text style={[styles.headText, styles.profileName]}>Shiva Pandey</Text>
+    </View>
+    <View style={styles.headMeta}>
+      <View style={styles.grid}>
+        <Text style={styles.metaValue}>120</Text>
+        <Text style={styles.metaKey}>Total Orders</Text>
+      </View>
+      <View style={styles.grid}>
+        <Text style={styles.metaValue}>2620</Text>
+        <Text style={styles.metaKey}>Loyalty Points</Text>
+      </View>
+      <View style={styles.grid}>
+        <Text style={styles.metaValue}>Rs. 1720</Text>
+        <Text style={styles.metaKey}>Total Spent</Text>
+      </View>
+    </View>
+  </View>
+)
 
 const Box = props => (
   <View style={styles.box}>

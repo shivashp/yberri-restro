@@ -1,7 +1,7 @@
 import React from 'react';
 import { StyleSheet, Text, View } from 'react-native';
 import {
-  LoginScreen, ProfileScreen
+  LoginScreen, ProfileScreen, HomeScreen
 } from 'screens';
 import { Font } from 'expo';  
 
@@ -18,8 +18,8 @@ export default class App extends React.Component {
   render() {
     let fontLoaded = this.state.fontLoaded;
     return (      
-      <View>
-        { fontLoaded && <ProfileScreen />}
+      <View style={{flex: 1}}>
+        { fontLoaded && <HomeScreen />}
       </View>
     );
   }
